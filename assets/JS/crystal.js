@@ -1,14 +1,40 @@
 $( document ).ready(function() {
   var targetNumber;
-  function setTarget(){
-    targetNumber = Math.floor(Math.random() * 300);
+
+
+  var gameSettings = {
+      "setTarget": function(){
+        targetNumber = Math.floor(Math.random() * 300);
+      },
+      "restartGame": function(){
+        $("#ys").text(counter);
+        gameSettings.setTarget();
+        $("#ntg").text(targetNumber);
+      }
+  };
+
+  function createButton(){
+    var iDiv = $("<div>")
+    iDiv.addClass("col-lg-3");
+    var rButton = $("<button type=\"button\">");
+    rButton.addClass("btn btn-secondary greset");
+    rButton.text("Reset Game");
+    iDiv.append(rButton);
+    $("#btns").append(iDiv);
   }
-  
-  setTarget();
+  createButton();
+  gameSettings.setTarget();
 
   $("#ntg").text(targetNumber);
 
   var counter = 0;
+  var wins = 0;
+  var losses = 0;
+
+  $("#wns").text(wins);
+  $("#los").text(losses);
+
+
 
   // Now for the hard part. Creating multiple crystals each with their own unique number value.
 
@@ -60,14 +86,29 @@ $( document ).ready(function() {
 
     if (counter === targetNumber) {
       alert("You win!");
+      wins++;
+      $("#wns").text(wins);
       counter = 0
-      $("#ys").text(counter);
+      gameSettings.restartGame();
     }
     else if (counter >= targetNumber) {
       alert("You lose!!");
+      losses++;
+      $("#los").text(losses);
       counter = 0;
-      $("#ys").text(counter);
+      gameSettings.restartGame();
     }
 
   });
+
+  $(".greset").on("click", function() {
+      wins = 0;
+      losses = 0;
+      counter = 0;
+      $("#wns").text(wins);
+      $("#los").text(losses);
+      gameSettings.restartGame();
+
+  });
+
 });
