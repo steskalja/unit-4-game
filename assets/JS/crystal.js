@@ -1,71 +1,73 @@
+$( document ).ready(function() {
+  var targetNumber;
+  function setTarget(){
+    targetNumber = Math.floor(Math.random() * 300);
+  }
+  
+  setTarget();
 
-    
+  $("#ntg").text(targetNumber);
 
-    
+  var counter = 0;
 
+  // Now for the hard part. Creating multiple crystals each with their own unique number value.
 
-function GenerateLetter(){
-    var letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-    var random = Math.floor(Math.random() * 26);
-    return letters[random];
+  // We begin by expanding our array to include four options.
+  var numberOptions = [10, 5, 3, 7];
 
-}
+  // Next we create a for loop to create crystals for every numberOption.
 
-function GuessLetter(cLetter,uLetter){
-    
-    if(cLetter === uLetter)
+  for (var i = 0; i < numberOptions.length; i++) {
+
+    // For each iteration, we will create an imageCrystal
+
+    var iDiv = $("<div>")
+    iDiv.addClass("col-lg-3");
+    var imageCrystal = $("<img>");
+
+    imageCrystal.addClass("crystal-image");
+    switch(i)
     {
-        return true;
-    
-    }
-    else
-    {
-        return false;
-    }
-
-}
-
-var CompGuess = GenerateLetter();
-var Guesses = 0;
-var uWins = 0;
-var uLoss =0;
-document.onkeyup = function(e){
-    if(GuessLetter(CompGuess,e.key.toUpperCase())){
-       var rslt = document.getElementById("GuessResults");
-       rslt.innerHTML = "You Win, Try Again";
-       uWins++;
-       document.getElementById("Wins").innerHTML = uWins;
-       document.getElementById("ltried").innerHTML = "";
-       Guesses = 0;
-       CompGuess = GenerateLetter();
+        case 0:
+        imageCrystal.attr("src", "./assets/images/img1.jpg");
+        break;
+        case 1:
+        imageCrystal.attr("src", "./assets/images/img2.jpg");
+        break;
+        case 2:
+        imageCrystal.attr("src", "./assets/images/img3.jpg");
+        break;
+        case 3:
+        imageCrystal.attr("src", "./assets/images/img4.jpg");
+        break;
 
     }
-    else if(Guesses < 4 && !GuessLetter(CompGuess,e.key.toUpperCase()))
-    {
-        var rslt = document.getElementById("GuessResults");
-        rslt.innerHTML = "Try Again";
-        var lBank = document.getElementById("ltried");
-        lBank.innerHTML = e.key.toUpperCase() + ' ' + lBank.innerHTML;
-        Guesses++;
-    }
-    else if(Guesses === 4 && !GuessLetter(CompGuess,e.key.toUpperCase()))
-    {
-        document.getElementById("GuessResults").innerHTML = "You Loose!, Try Again";
-        uLoss++;
-        document.getElementById("Losses").innerHTML = uLoss;
-        document.getElementById("ltried").innerHTML = "";
-        Guesses = 0;
-        CompGuess = GenerateLetter();
-    }
-};
 
-function gReset(){
-    Guesses = 0;
-    uWins = 0;
-    uLoss =0;
-    CompGuess = GenerateLetter();
-    document.getElementById("Losses").innerHTML = uLoss;
-    document.getElementById("Wins").innerHTML = uWins;
-    document.getElementById("ltried").innerHTML = "";
-    document.getElementById("GuessResults").innerHTML = "";
-}
+    imageCrystal.attr("data-crystalvalue", numberOptions[i]);
+    iDiv.append(imageCrystal);
+
+    $("#crystals").append(iDiv);
+  }
+
+  $(".crystal-image").on("click", function() {
+
+    var crystalValue = ($(this).attr("data-crystalvalue"));
+    crystalValue = parseInt(crystalValue);
+ 
+    counter += crystalValue;
+
+    $("#ys").text(counter);
+
+    if (counter === targetNumber) {
+      alert("You win!");
+      counter = 0
+      $("#ys").text(counter);
+    }
+    else if (counter >= targetNumber) {
+      alert("You lose!!");
+      counter = 0;
+      $("#ys").text(counter);
+    }
+
+  });
+});

@@ -1,0 +1,35 @@
+body{
+  background-image: url('../images/mekong-green.png');
+}
+
+.title{
+  border-radius: 25px;
+  border: 2px;
+  border-color: solid black;
+  background-color: aqua;
+  text-align: center;
+}
+
+.desc{
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-style: oblique;
+}
+
+.score{
+  border-radius: 10px;
+  border:  2px;
+  border-color: solid black;
+  /*padding: 100%;*/
+  width: 100%;
+  height: 40px;
+  font-weight: bold;
+  font-size: 30px;
+  font-stretch: expanded;
+  background-color: whitesmoke;
+  text-align: center;
+}
+
+.crystal-image {
+  width: 300px;
+  height: 300px;
+}

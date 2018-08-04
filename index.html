@@ -3,16 +3,53 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Psychic Guess</title>
+    <title>Crystal Challenge</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/CSS/reset.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/CSS/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="./assets/CSS/style.css" />
     <script src="./assets/JS/bootstrap.bundle.min.js"></script>
     <script src="./assets/JS/jquery-3.3.1.min.js"></script>
     <script src="./assets/js/popper.min.js"></script>
     <script src="./assets/JS/crystal.js"></script>
 </head>
 <body>
+    <div class="container mainbody">
+        <div class="row">
+            <div class="col align-self-center">
+                <h1 class="title">The Crystal Challenge</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col desc">
+                <p>Click on the crystals below to add up to the value</p>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="row">
+                <div class="col-md-3" style="font-style: bold;">Add up to this:</div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <p class="score" id="ntg"></p>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+                <div class="col-md-3" style="font-style: bold;">Your Score</div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <p class="score" id="ys">0</p>
+            </div>
+        </div>
+        <div class="row" id="crystals"> 
+            
+        </div>
+
+    </div>
     
 </body>
 </html>
